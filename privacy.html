@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="privacyPageTitle">Політика конфіденційності | HookStorm</title>
+    <meta name="description" data-lang="privacyPageDescription"
+          content="Дізнайтеся, як ми захищаємо ваші персональні дані та використовуємо їх у HookStorm.">
+    <meta property="og:title" data-lang="privacyPageTitle" content="Політика конфіденційності | HookStorm">
+    <meta property="og:description"
+          data-lang="privacyPageDescription"
+          content="Дізнайтеся, як ми захищаємо ваші персональні дані та використовуємо їх у HookStorm.">
+    <meta property="og:image" content="icon.png">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Хедер -->
+<header class="py-16 text-center bg-gradient-to-r from-pink-500 to-purple-600 shadow-lg">
+    <div class="absolute top-4 right-6">
+        <select id="language-switcher"
+                class="form-dropdown w-full p-3 rounded-lg bg-white text-black">
+            <option value="ua">🇺🇦 Українська</option>
+            <option value="en">🇺🇸 English</option>
+        </select>
+    </div>
+    <h1 class="md:text-5xl text-2xl font-bold text-white" data-lang="privacyHeader"></h1>
+    <p class="text-lg text-gray-100 mt-2" data-lang="privacyLastUpdate"></p>
+</header>
+
+<!-- Основний контент -->
+<main class="max-w-5xl mx-auto px-6 py-12 text-gray-100">
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section1.title"></h2>
+        <p data-lang="privacySections.section1.content"></p>
+        <ul class="list-disc pl-6 text-gray-300" id="privacySections.section1.list"></ul>
+    </section>
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section2.title"></h2>
+        <p data-lang="privacySections.section2.content"></p>
+        <ul class="list-disc pl-6 text-gray-300" id="privacySections.section2.list"></ul>
+    </section>
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section3.title"></h2>
+        <p data-lang="privacySections.section3.content"></p>
+        <ul class="list-disc pl-6 text-gray-300" id="privacySections.section3.list"></ul>
+    </section>
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section4.title"></h2>
+        <p data-lang="privacySections.section4.content"></p>
+        <ul class="list-disc pl-6 text-gray-300" id="privacySections.section4.list"></ul>
+    </section>
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section5.title"></h2>
+        <p data-lang="privacySections.section5.content"></p>
+    </section>
+
+    <section class="p-6 bg-gray-800 rounded-lg shadow-lg mb-6" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-pink-400 mb-4"
+            data-lang="privacySections.section6.title"></h2>
+        <p data-lang="privacySections.section6.content"></p>
+    </section>
+</main>
+
+<!-- Кнопка повернення на головну -->
+<div class="text-center mt-12">
+    <a href="index.html"
+       data-lang="backToHome"
+       class="px-6 py-3 bg-pink-500 text-white text-lg rounded-lg hover:bg-pink-600 transition">
+        ⬅️ Повернутися на головну
+    </a>
+</div>
+
+<!-- Футер -->
+<footer class="py-12 text-center bg-gradient-to-r from-pink-500 to-purple-600 mt-16">
+    <div class="text-center text-gray-300 text-sm mt-8" data-lang="footerCopyright">
+        © 2025 HookStorm. Всі права захищені.
+    </div>
+</footer>
+
+<!-- AOS Animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            AOS.init();
+        });
+
+</script>
+
+</body>
+</html>
