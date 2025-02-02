@@ -1,18 +1,8 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /private/
-Disallow: /tmp/
-Disallow: /api/
-Disallow: /wp-admin/
-Disallow: /search/
-Disallow: /?*
-Disallow: /*?ref=*
+Disallow:
 
 Allow: /assets/
 Allow: /css/
 Allow: /js/
 
-User-agent: Googlebot
-Allow: /
-
-Sitemap: https://hookstorm.com/sitemap.xml
+Sitemap: https://demid.github.io/hookstorm/sitemap.xml
