@@ -71,7 +71,7 @@
 
             footerSlogan: "Ваша фабрика вірусного контенту!",
             footerEmail: "📧 Email:",
-            footerSupport: "support@hookstorm.com",
+            footerSupport: "hoookstorm@gmail.com,
             footerTerms: "📜 Умови використання",
             footerPrivacy: "🔒 Політика конфіденційності",
             footerCopyright: "© 2025 HookStorm. Всі права захищені.",
@@ -111,7 +111,7 @@
                 section7: {
                     title: "📩 7. Контакти",
                     content: `Якщо у вас є питання, зв’яжіться з нами: <br>
-                              <a href="mailto:support@hookstorm.com" class="text-pink-400 underline">support@hookstorm.com</a>`
+                              <a href="mailto:hoookstorm@gmail.com" class="text-pink-400 underline">hoookstorm@gmail.com</a>`
                 }
             },
             backToHome: "⬅️ Повернутися на головну",
@@ -162,7 +162,7 @@
                 section6: {
                     title: "📩 6. Як видалити свої дані?",
                     content: `Ви можете запросити видалення ваших даних, написавши на: <br>
-                              <a href="mailto:support@hookstorm.com" class="text-pink-400 underline">support@hookstorm.com</a>`
+                              <a href="mailto:hoookstorm@gmail.com" class="text-pink-400 underline">hoookstorm@gmail.com</a>`
                 }
             },
             termsPageTitle: "Умови використання | HookStorm",
@@ -246,7 +246,7 @@
 
             footerSlogan: "Your viral content factory!",
             footerEmail: "📧 Email:",
-            footerSupport: "support@hookstorm.com",
+            footerSupport: "hoookstorm@gmail.com",
             footerTerms: "📜 Terms of Service",
             footerPrivacy: "🔒 Privacy Policy",
             footerCopyright: "© 2025 HookStorm. All rights reserved.",
@@ -286,7 +286,7 @@
                 section7: {
                     title: "📩 7. Contact",
                     content: `If you have any questions, contact us: <br>
-                              <a href="mailto:support@hookstorm.com" class="text-pink-400 underline">support@hookstorm.com</a>`
+                              <a href="mailto:hoookstorm@gmail.com" class="text-pink-400 underline">hoookstorm@gmail.com</a>`
                 }
             },
             backToHome: "⬅️ Back to Home",
@@ -337,7 +337,7 @@
                 section6: {
                     title: "📩 6. How to Delete Your Data?",
                     content: `You can request the deletion of your data by emailing: <br>
-                              <a href="mailto:support@hookstorm.com" class="text-pink-400 underline">support@hookstorm.com</a>`
+                              <a href="mailto:hoookstorm@gmail.com" class="text-pink-400 underline">hoookstorm@gmail.com</a>`
                 }
             },
             termsPageTitle: "Terms of Service | HookStorm",
