@@ -1,8 +1,9 @@
     const translations = {
         ua: {
-            errorNoEmail: "❌ Будь ласка, введіть email!",
-            errorNoNiche: "❌ Будь ласка, оберіть нішу!",
-            successMessage: "🔥 Дякуємо! Ми надішлемо вам 3 вірусні ідеї для {niche} на {email}!",
+            errorNoEmail: "❌ Будь ласка, введіть email і виберіть нішу.",
+            errorNotValidEmail: "❌ Будь ласка, введіть коректний email.",
+            successMessage: "🔥 Ідеї відправлено! Ви зможете отримати нові завтра.",
+            alreadyRequested: "⏳ Ви вже отримали ідеї сьогодні. Спробуйте завтра!",
 
             title: "Генератор вірусного контенту",
             subtitle: "Ми аналізуємо тренди та створюємо вірусні ідеї для TikTok, Shorts, Reels! 🔥",
@@ -174,9 +175,10 @@
             landingPageDescription: "Створи вірусні TikTok-відео за секунди! HookStorm – генератор контенту, що робить трендові хуки та сценарії.",
         },
         en: {
-            errorNoEmail: "❌ Please enter your email!",
-            errorNoNiche: "❌ Please select a niche!",
-            successMessage: "🔥 Thank you! We will send you 3 viral ideas for {niche} at {email}!",
+            errorNoEmail: "❌ Please enter your email and select a niche.",
+            errorNotValidEmail: "❌ Please enter a valid email.",
+            successMessage: "🔥 Ideas sent! You can receive new ones tomorrow.",
+            alreadyRequested: "⏳ You have already received ideas today. Try again tomorrow!",
 
             title: "Viral Content Generator",
             subtitle: "We analyze trends and create viral ideas for TikTok, Shorts, Reels! 🔥",
@@ -349,99 +351,162 @@
         }
     };
 
-if (document.getElementById("submitBtn")) {
-    document.getElementById("submitBtn").addEventListener("click", async function (event) {
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("submitBtn")) {
+            const submitBtn = document.getElementById("submitBtn");
+            const emailInput = document.getElementById("email");
+            const nicheSelect = document.getElementById("niche");
+            const messageBox = document.getElementById("errorMessage");
+            let lang = localStorage.getItem("selectedLanguage") || "ua";
 
-        let email = document.getElementById("email").value.trim();
-        let niche = document.getElementById("niche").value;
-        let lang = localStorage.getItem("selectedLanguage") || "ua";
+            // ✅ При введенні в інпут або виборі ніші приховуємо повідомлення про помилку
+            document.getElementById("email").addEventListener("input", function () {
+                messageBox.classList.add("hidden");
+                if (!canSubmit()) {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+                    messageBox.textContent = translations[lang]["alreadyRequested"];
+                    messageBox.classList.remove("hidden");
+                }
+            });
 
-        let empty = lang === "ua" ? "Виберіть..." : "Choose..."
-        if (!niche || niche == empty) {
-            alert(translations[lang]["errorNoNiche"]);
-            return;
+            document.getElementById("niche").addEventListener("change", function () {
+                messageBox.classList.add("hidden");
+                if (!canSubmit()) {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+                    messageBox.textContent = translations[lang]["alreadyRequested"];
+                    messageBox.classList.remove("hidden");
+                }
+            });
+
+            // Функція перевірки останнього запиту
+            function canSubmit() {
+                const lastRequestDate = localStorage.getItem("lastRequestDate");
+                const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+                return lastRequestDate !== today;
+            }
+
+            // Функція валідації email
+            function isValidEmail(email) {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailPattern.test(email);
+            }
+
+            // Блокування кнопки, якщо запит вже був
+            if (!canSubmit()) {
+                submitBtn.disabled = true;
+                submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+                messageBox.textContent = translations[lang]["alreadyRequested"];
+                messageBox.classList.remove("hidden");
+            }
+
+            // Обробка кліку на кнопку "Отримати"
+            submitBtn.addEventListener("click", function (event) {
+                event.preventDefault(); // Запобігаємо дефолтній поведінці кнопки
+
+                const email = emailInput.value.trim();
+                const niche = nicheSelect.value;
+
+                let empty = lang === "ua" ? "Виберіть..." : "Choose..."
+                if (!email || niche == empty) {
+                    messageBox.textContent = translations[lang]["errorNoEmail"];
+                    messageBox.classList.remove("hidden");
+                    return;
+                }
+
+                if (!isValidEmail(email)) {
+                    messageBox.textContent = translations[lang]["errorNotValidEmail"];
+                    emailInput.classList.add("border", "border-red-500");
+                    messageBox.classList.remove("hidden");
+                    return;
+                }
+
+                fetch("https://script.google.com/macros/s/AKfycbwO3ploD_sRg_I_poxLm-lfkaGxSq-VxNXsU9Vcn3zrJlDysTh3O93pTN6dFSXRNcTE6g/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        niche: niche
+                    })
+                })
+                .then(response => console.log("Дані відправлено успішно"))
+                .catch(error => console.error("Помилка:", error));
+
+                // Очищуємо помилки
+                emailInput.classList.remove("border", "border-red-500");
+                messageBox.textContent = "";
+
+                // Зберігаємо дату останнього запиту
+                localStorage.setItem("lastRequestDate", new Date().toISOString().split('T')[0]);
+
+                // Блокуємо кнопку після відправки
+                submitBtn.disabled = true;
+                submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+                messageBox.classList.remove("hidden");
+                messageBox.textContent = translations[lang]["successMessage"];
+                document.getElementById("email").value = "";
+                document.getElementById("niche").value = empty;
+            });
         }
-
-        if (!email) {
-            alert(translations[lang]["errorNoEmail"]);
-            return;
-        }
-
-        fetch("https://script.google.com/macros/s/AKfycbwO3ploD_sRg_I_poxLm-lfkaGxSq-VxNXsU9Vcn3zrJlDysTh3O93pTN6dFSXRNcTE6g/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                niche: niche
-            })
-        })
-        .then(response => console.log("Дані відправлено успішно"))
-        .catch(error => console.error("Помилка:", error));
-
-        alert("Дякуємо! Ідеї вже у вашій пошті! 🚀");
-        document.getElementById("email").value = "";
-        document.getElementById("niche").value = empty;
     });
-}
 
-// Лічильник FOMO
-document.addEventListener("DOMContentLoaded", function() {
-	let counterElement = document.getElementById("counter");
+    // Лічильник FOMO
+    document.addEventListener("DOMContentLoaded", function() {
+        let counterElement = document.getElementById("counter");
 
-	// Отримуємо останнє збережене значення або встановлюємо 753
-	if(counterElement) {
-        let storedCount = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 753;
+        // Отримуємо останнє збережене значення або встановлюємо 753
+        if(counterElement) {
+            let storedCount = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 753;
 
-        // Встановлюємо лічильник на сторінці
-        counterElement.textContent = storedCount;
-
-        function updateCounter() {
-            // Збільшуємо число випадковим чином на 1-3
-            let increment = Math.floor(Math.random() * 3) + 1;
-            storedCount += increment;
-
-            // Оновлюємо UI
+            // Встановлюємо лічильник на сторінці
             counterElement.textContent = storedCount;
 
-            // Зберігаємо нове значення у localStorage
-            localStorage.setItem("counter", storedCount);
+            function updateCounter() {
+                // Збільшуємо число випадковим чином на 1-3
+                let increment = Math.floor(Math.random() * 3) + 1;
+                storedCount += increment;
+
+                // Оновлюємо UI
+                counterElement.textContent = storedCount;
+
+                // Зберігаємо нове значення у localStorage
+                localStorage.setItem("counter", storedCount);
+            }
+
+            // Запускаємо оновлення кожні 5-15 секунд
+            setInterval(updateCounter, ((Math.floor(Math.random() * 15000) / 1000) * 1000) + 5000);
         }
+    });
 
-        // Запускаємо оновлення кожні 5-15 секунд
-        setInterval(updateCounter, ((Math.floor(Math.random() * 15000) / 1000) * 1000) + 5000);
-	}
-});
-
-function scrollToHero() {
-	document.getElementById("hero").scrollIntoView({
-		behavior: "smooth"
-	});
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const langSwitcher = document.getElementById("language-switcher");
-
-    function detectBrowserLanguage() {
-        const userLang = navigator.language || navigator.userLanguage;
-        const supportedLanguages = { "uk": "ua", "ru": "ua", "en": "en" };
-        return supportedLanguages[userLang.split('-')[0]] || "ua";
+    function scrollToHero() {
+        document.getElementById("hero").scrollIntoView({
+            behavior: "smooth"
+        });
     }
 
-    // 🔹 Завантаження мови з LocalStorage або автоматичне визначення
-    const savedLang = localStorage.getItem("selectedLanguage") || detectBrowserLanguage();
-    langSwitcher.value = savedLang;
-    updateLanguage(savedLang);
+    document.addEventListener("DOMContentLoaded", function () {
+        const langSwitcher = document.getElementById("language-switcher");
 
-    // 🔹 Додаємо обробник подій на випадаючий список
-    langSwitcher.addEventListener("change", function () {
-        updateLanguage(this.value);
+        function detectBrowserLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            const supportedLanguages = { "uk": "ua", "ru": "ua", "en": "en" };
+            return supportedLanguages[userLang.split('-')[0]] || "ua";
+        }
+
+        // 🔹 Завантаження мови з LocalStorage або автоматичне визначення
+        const savedLang = localStorage.getItem("selectedLanguage") || detectBrowserLanguage();
+        langSwitcher.value = savedLang;
+        updateLanguage(savedLang);
+
+        // 🔹 Додаємо обробник подій на випадаючий список
+        langSwitcher.addEventListener("change", function () {
+            updateLanguage(this.value);
+        });
     });
-});
-
 
     function updateLanguage(lang) {
         const elements = document.querySelectorAll("[data-lang]");
