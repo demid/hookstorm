@@ -71,7 +71,7 @@
 
             footerSlogan: "Ваша фабрика вірусного контенту!",
             footerEmail: "📧 Email:",
-            footerSupport: "hoookstorm@gmail.com,
+            footerSupport: "hoookstorm@gmail.com",
             footerTerms: "📜 Умови використання",
             footerPrivacy: "🔒 Політика конфіденційності",
             footerCopyright: "© 2025 HookStorm. Всі права захищені.",
