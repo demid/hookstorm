@@ -9,6 +9,7 @@
             subtitle: "Ми аналізуємо тренди та створюємо вірусні ідеї для TikTok, Shorts, Reels! 🔥",
             nicheLabel: "Оберіть свою нішу:",
             getIdeas: "🔥 Отримати",
+            enterEmail: "Введи email",
             counterText: "людей вже отримали свої вірусні ідеї!",
             niches: {
                 popular: "🔥 Популярні ніші",
@@ -185,6 +186,7 @@
             subtitle: "We analyze trends and create viral ideas for TikTok, Shorts, Reels! 🔥",
             nicheLabel: "Choose your niche:",
             getIdeas: "🔥 Get Ideas",
+            enterEmail: "Enter your email",
             counterText: "people have already received their viral ideas!",
             niches: {
                 popular: "🔥 Popular Niches",
@@ -516,6 +518,7 @@
         const counterTextElement = document.querySelector("[data-lang='counterText']");
         const counterElement = document.getElementById("counter");
         const termsSections = document.querySelectorAll("[data-term-section]");
+        const emailInput = document.getElementById("email");
 
         // 🔹 Оновлюємо всі елементи з data-lang
         elements.forEach(el => {
@@ -562,6 +565,10 @@
         // 🔹 Оновлення тексту лічильника
         if (counterTextElement && counterElement) {
             counterTextElement.innerHTML = `🔥 <span id="counter">${counterElement.innerText}</span> ${translations[lang]['counterText']}`;
+        }
+
+        if (emailInput) {
+            emailInput.placeholder = translations[lang]["enterEmail"];
         }
 
         // 🔹 Очищуємо список ніш перед оновленням
