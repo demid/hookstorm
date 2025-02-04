@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://demid.github.io/hookstorm/sitemap.xml
+Sitemap: https://hookstorm.online/sitemap.xml
