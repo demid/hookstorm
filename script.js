@@ -115,6 +115,7 @@
                 }
             },
             backToHome: "⬅️ Повернутися на головну",
+            _404Title: "Ой! Такої сторінки не існує 😢",
 
             privacyHeader: "🔒 Політика конфіденційності",
             privacyLastUpdate: "Як ми захищаємо ваші дані?",
@@ -290,6 +291,7 @@
                 }
             },
             backToHome: "⬅️ Back to Home",
+            _404Title: "Oh! This page does not exist 😢",
 
             privacyHeader: "🔒 Privacy Policy",
             privacyLastUpdate: "How do we protect your data?",
