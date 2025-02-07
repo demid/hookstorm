@@ -8,7 +8,7 @@
             title: "Генератор вірусного контенту",
             subtitle: "Ми аналізуємо тренди та створюємо вірусні ідеї для TikTok, Shorts, Reels! 🔥",
             nicheLabel: "Оберіть свою нішу:",
-            getIdeas: "🔥 Отримати",
+            getIdeas: "🚀 Почати зараз",
             enterEmail: "Введи email",
             counterText: "людей вже отримали свої вірусні ідеї!",
             niches: {
@@ -185,7 +185,7 @@
             title: "Viral Content Generator",
             subtitle: "We analyze trends and create viral ideas for TikTok, Shorts, Reels! 🔥",
             nicheLabel: "Choose your niche:",
-            getIdeas: "🔥 Get Ideas",
+            getIdeas: "🚀 Start for Free",
             enterEmail: "Enter your email",
             counterText: "people have already received their viral ideas!",
             niches: {
